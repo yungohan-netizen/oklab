@@ -57,10 +57,6 @@ const LiquidSphere = ({ scrollProgress, hoverIntensity }: { scrollProgress: numb
   const meshRef = useRef<THREE.Mesh>(null);
   const materialRef = useRef<THREE.ShaderMaterial>(null);
   const [scale, setScale] = useState(0);
-  const { viewport } = useThree();
-  
-  // Responsive scale factor: smaller on mobile viewports
-  const viewportScale = Math.min(viewport.width / 14, 1);
   
   // Use a reliable chrome-like matcap
   const [matcap] = useMatcapTexture('3B3C3F_DAD9D5_929290_ABACA8', 128);
@@ -87,7 +83,7 @@ const LiquidSphere = ({ scrollProgress, hoverIntensity }: { scrollProgress: numb
     if (meshRef.current) {
       meshRef.current.rotation.y += 0.005;
       meshRef.current.rotation.z += 0.002;
-      meshRef.current.scale.setScalar(scale * viewportScale);
+      meshRef.current.scale.setScalar(scale);
     }
   });
 
@@ -185,10 +181,7 @@ const SHARD_COUNT = 5000;
 const Shards = ({ scrollProgress, hoverIntensity }: { scrollProgress: number, hoverIntensity: number }) => {
   const meshRef = useRef<THREE.InstancedMesh>(null);
   const materialRef = useRef<THREE.ShaderMaterial>(null);
-  const { viewport } = useThree();
   const [matcap] = useMatcapTexture('3B3C3F_DAD9D5_929290_ABACA8', 128);
-
-  const viewportScale = Math.min(viewport.width / 14, 1);
 
   const initialPositions = useMemo(() => {
     const pos = [];
@@ -229,7 +222,7 @@ const Shards = ({ scrollProgress, hoverIntensity }: { scrollProgress: number, ho
       dummy.rotation.x = i * 0.01 + t * 5;
       dummy.rotation.y = i * 0.02 + t * 5;
       
-      const scale = 0.02 * (1.0 + Math.random() * 0.5) * viewportScale;
+      const scale = 0.02 * (1.0 + Math.random() * 0.5);
       const finalScale = t > 0.01 ? scale : 0;
       dummy.scale.setScalar(finalScale);
       

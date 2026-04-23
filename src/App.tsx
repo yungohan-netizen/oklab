@@ -34,11 +34,9 @@ export default function App() {
 
     // Smooth Scroll Setup
     const lenis = new Lenis({
-      duration: 0.8, // Ultra-responsive scroll
+      duration: 2.2, // Heavier, more professional drag
       infinite: true,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      wheelMultiplier: 1.4,
-      touchMultiplier: 2.2,
     });
 
     function raf(time: number) {
@@ -87,7 +85,7 @@ export default function App() {
   }, []);
 
   return (
-    <div className="relative h-[1000vh] w-full bg-[#050505]">
+    <div className="relative h-[1500vh] w-full bg-[#050505]">
       <AnimatePresence>
         {loading && <Loader key="loader" />}
       </AnimatePresence>
@@ -128,9 +126,9 @@ export default function App() {
       />
       
       {/* Scroll Sections - Awwwards Polish */}
-      <section className="relative h-[150vh] pointer-events-none" />
+      <section className="relative h-[200vh] pointer-events-none" />
       
-      <section className="relative h-[200vh] px-8 md:px-16 overflow-visible">
+      <section className="relative h-[300vh] px-8 md:px-16 overflow-visible">
          <div className="sticky top-0 h-screen flex flex-col justify-center items-start max-w-3xl pointer-events-none">
             <motion.span 
               initial={{ opacity: 0, x: -20 }}
@@ -159,7 +157,7 @@ export default function App() {
          </div>
       </section>
 
-      <section className="relative h-[200vh] px-8 md:px-16 text-right flex justify-end">
+      <section className="relative h-[300vh] px-8 md:px-16 text-right flex justify-end">
          <div className="sticky top-0 h-screen flex flex-col justify-center items-end max-w-3xl pointer-events-none">
             <motion.span 
               initial={{ opacity: 0, x: 20 }}
@@ -189,7 +187,7 @@ export default function App() {
          </div>
       </section>
 
-      <section className="relative h-[200vh] px-6 md:px-16">
+      <section className="relative h-[300vh] px-6 md:px-16">
          <div className="sticky top-0 h-screen flex flex-col justify-center items-center max-w-full text-center pointer-events-none">
             <div className="w-full flex flex-col items-center">
               <motion.span 
